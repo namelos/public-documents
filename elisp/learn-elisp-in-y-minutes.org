@@ -1,4 +1,5 @@
 * Emacs Lisp
+** Basics
 - S-expression is some basic thing to lisp
 #+BEGIN_SRC emacs-lisp
 (+ 2 2)
@@ -9,13 +10,13 @@
 (+ 2 (+ 1 1))
 #+END_SRC
 
-- src_emacs-lisp{setq} stores a value into a variable
+- =setq= stores a value into a variable
 #+name: my-name
 #+BEGIN_SRC emacs-lisp
 (setq my-name "Namelos")
 #+END_SRC
 
-- src_emacs-lisp{insert} will insert parameter where the cursor is
+- =insert= will insert parameter where the cursor is
 #+header: :var my-name=my-name
 #+BEGIN_SRC emacs-lisp
 (setq my-name "Namelos")
@@ -28,3 +29,61 @@
 (defun hello () (insert "Hello, I am " my-name))
 (hello)
 #+END_SRC
+
+- Arguments in function:
+#+name: hello
+#+BEGIN_SRC emacs-lisp
+(defun hello (name) (insert "Hello " name))
+#+END_SRC
+
+- Call it:
+#+header: :var hello=hello
+#+BEGIN_SRC emacs-lisp
+(hello "you")
+#+END_SRC
+
+** Editor operations
+- Now switch to a new buffer named "*test*" in another window:
+#+BEGIN_SRC emacs-lisp
+(switch-to-buffer-other-window "*test*")
+#+END_SRC
+
+- You could combine several sexps with =progn=:
+#+header: :var hello=hello
+#+BEGIN_SRC emacs-lisp
+(progn
+  (switch-to-buffer-other-window "*test*")
+  (hello "you"))
+#+END_SRC
+
+- It is often useful to erase the buffer:
+#+header: :var hello=hello
+#+BEGIN_SRC emacs-lisp
+(progn
+  (switch-to-buffer-other-window "*test*")
+  (erase-buffer)
+  (hello "there"))
+#+END_SRC
+
+- Or go back to the other window:
+#+header: :var hello=hello
+#+BEGIN_SRC emacs-lisp
+(progn
+  (switch-to-buffer-other-window "*test*")
+  (erase-buffer)
+  (hello "you")
+  (other-window 1))
+#+END_SRC
+
+- You can bind a value to a local variable with =let=:
+  No need to use =progn= since =let= also combines several exps
+#+header: :var hello=hello
+#+BEGIN_SRC emacs-lisp
+(let ((local-name "you"))
+  (switch-to-buffer-other-window "*test*")
+  (erase-buffer)
+  (hello local-name)
+  (other-window 1))
+#+END_SRC
+
+
