@@ -1,28 +1,28 @@
 * Emacs Lisp
-** S-expression is some basic thing to lisp
+- S-expression is some basic thing to lisp
 #+BEGIN_SRC emacs-lisp
 (+ 2 2)
 #+END_SRC
 
-** Nesting expressions
+- Nesting expressions
 #+BEGIN_SRC emacs-lisp
 (+ 2 (+ 1 1))
 #+END_SRC
 
-** src_emacs-lisp{setq} stores a value into a variable
+- src_emacs-lisp{setq} stores a value into a variable
 #+name: my-name
 #+BEGIN_SRC emacs-lisp
 (setq my-name "Namelos")
 #+END_SRC
 
-** src_emacs-lisp{insert} will insert parameter where the cursor is
+- src_emacs-lisp{insert} will insert parameter where the cursor is
 #+header: :var my-name=my-name
 #+BEGIN_SRC emacs-lisp
 (setq my-name "Namelos")
 (insert "Hello, I am " my-name)
 #+END_SRC
 
-** You can combine sexps into functions
+- You can combine sexps into functions
 #+header: :var my-name=my-name
 #+BEGIN_SRC emacs-lisp
 (defun hello () (insert "Hello, I am " my-name))
